@@ -1,18 +1,18 @@
 # Part-Of-Speech-tagging
 
-Use Hidden Markov model to identify the category of words ('noun', 'verb', ...) or Part-Of-Speech-tagging.
+Part-Of-Speech-tagging using Hidden Markov model to identify the category of words ('noun', 'verb', ...) in plain text.
 
 # Description
 
 This project is part of Udacity [Natural Language Processing Nanodegree](https://www.udacity.com/course/natural-language-processing-nanodegree--nd892).
 
-The objective is to determine the correct category of each word in sentences and caterorize as per the 12 categories of the universal POS tagset. This process is called Part-Of-Speech-Tagging.
+The objective is to categorize each word in sentences as one of the 12 categories of the universal POS tag set. This process is called Part-Of-Speech-Tagging.
 
 ![](asset/POS.png)
 
 Part of speech tagging is the process of determining the syntactic category of a word from the words in its surrounding context. It is often used to help disambiguate natural language phrases because it can be done quickly with high accuracy. Tagging can be used for many NLP tasks like determining correct pronunciation during speech synthesis (for example, dis-count as a noun vs dis-count as a verb), for information retrieval, and for word sense disambiguation.
 
-The universal POS tagset used defines the following twelve POS tags: NOUN (nouns), VERB (verbs), ADJ (adjectives), ADV (adverbs), PRON (pronouns), DET (determiners and articles), ADP (prepositions and postpositions), NUM (numerals), CONJ (conjunctions), PRT (particles), ‘.’ (punctuation marks) and X (a catch-all for other categories such as abbreviations or foreign words).
+The universal POS tagset used defines the following twelve POS tags: NOUN (nouns), VERB (verbs), ADJ (adjectives), ADV (adverbs), PRON (pronouns), DET (determiners and articles), ADP (prepositions and postpositions), NUM (numerals), CONJ (conjunctions), PRT (particles), ‘.’ (punctuation marks) and X (a catch-all for other categories such as abbreviations or foreign words). For more details, you can check out this [paper](http://www.petrovi.de/data/universal.pdf).
 
 # Dataset used
 
@@ -29,6 +29,10 @@ Hidden Markov models have been able to achieve >96% tag accuracy with larger tag
 Using a transition graph, the POS selected is the one with the highest probability, ie maximum likelihood. This is achieved using Viterbi algorithm.
 
 ![](asset/results.png)
+
+# Dependencies
+
+The project uses the [Pomegranate](https://github.com/jmschrei/pomegranate) library to build a hidden Markov model for part of speech tagging.
 
 # Results
 
