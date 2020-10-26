@@ -20,7 +20,7 @@ The project uses Brown corpus dataset. The Brown University Standard Corpus of P
 
 # Hidden Markov Model and Viterbi algorithm
 
-In such POS tagging tack, we have observable values represented by the sentences and their words. And we have hidden states represented by the tags such as 'noun', 'verb', 'adjective', 'pronoun', etc... which we want to attach to each word. 
+In such POS tagging task, we have observable values represented by the sentences and their words. And we have hidden states represented by the tags such as 'noun', 'verb', 'adjective', 'pronoun', etc... which we want to attach to each word. 
 
 Hidden Markov models have been able to achieve >96% tag accuracy with larger tagsets on realistic text corpora. Hidden Markov models have also been used for speech recognition and speech generation, machine translation, gene recognition for bioinformatics, and human gesture recognition for computer vision, and more.
 
@@ -37,11 +37,12 @@ The project uses the [Pomegranate](https://github.com/jmschrei/pomegranate) libr
 # Results
 
 Two models are compared:
+
 - The simplest tagger (and a good baseline for tagger performance) is to simply choose the tag most frequently assigned to each word. This "most frequent class" tagger inspects each observed word in the sequence and assigns it the label that was most often assigned to that word in the corpus. The performance achieved is already excellent. The accuracy is shown below.
 
 ![](asset/MFC.jpg)
 
-- Hidden Markov Model. The performance of this model improves by a few percentage points compared to the base line represented by the simplest MFC tagger which simply chooses the tag most frequently assigned to each word. The performance achieved is above 95% accuracy on the unseen test set. 
+- Hidden Markov Model using bigrams. The performance of this model improves by a few percentage points compared to the base line represented by the simplest MFC tagger which simply chooses the tag most frequently assigned to each word. The performance achieved is above 95% accuracy on the unseen test set. 
 
 ![](asset/HMM.jpg)
 
