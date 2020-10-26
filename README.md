@@ -8,7 +8,7 @@ This project is part of Udacity [Natural Language Processing Nanodegree](https:/
 
 The objective is to categorize each word in sentences as one of the 12 categories of the universal POS tag set. This process is called Part-Of-Speech-Tagging.
 
-![](asset/POS.png)
+![](asset/POS.jpg)
 
 Part of speech tagging is the process of determining the syntactic category of a word from the words in its surrounding context. It is often used to help disambiguate natural language phrases because it can be done quickly with high accuracy. Tagging can be used for many NLP tasks like determining correct pronunciation during speech synthesis (for example, dis-count as a noun vs dis-count as a verb), for information retrieval, and for word sense disambiguation.
 
@@ -28,7 +28,7 @@ Hidden Markov models have been able to achieve >96% tag accuracy with larger tag
 
 Using a transition graph, the POS selected is the one with the highest probability, ie maximum likelihood. This is achieved using Viterbi algorithm.
 
-![](asset/results.png)
+![](asset/results.jpg)
 
 # Dependencies
 
@@ -39,11 +39,11 @@ The project uses the [Pomegranate](https://github.com/jmschrei/pomegranate) libr
 Two models are compared:
 - The simplest tagger (and a good baseline for tagger performance) is to simply choose the tag most frequently assigned to each word. This "most frequent class" tagger inspects each observed word in the sequence and assigns it the label that was most often assigned to that word in the corpus. The performance achieved is already excellent. The accuracy is shown below.
 
-![](asset/MFC.png)
+![](asset/MFC.jpg)
 
 - Hidden Markov Model. The performance of this model improves by a few percentage points compared to the base line represented by the simplest MFC tagger which simply chooses the tag most frequently assigned to each word. The performance achieved is above 95% accuracy on the unseen test set. 
 
-![](asset/HMM.png)
+![](asset/HMM.jpg)
 
 
 
