@@ -46,7 +46,7 @@ The project uses the [Pomegranate](https://github.com/jmschrei/pomegranate) libr
 
 # Results
 
-Two models are compared:
+Two models using the Universal POS tagset are compared first:
 
 - The simplest tagger (and a good baseline for tagger performance) is to simply choose the tag most frequently assigned to each word. This "most frequent class" tagger inspects each observed word in the sequence and assigns it the label that was most often assigned to that word in the corpus. The performance achieved is already excellent. The accuracy is shown below.
 
@@ -63,3 +63,19 @@ Two models are compared:
 Model mapping:
 
 ![](asset/exampleHMM.png)
+
+
+The full Brown Corpus is then used with the unsimplied tagset. There are many variants of tagsets increasing complexity significantly. For example, looking at Nouns or NN tagset variants, the most important contain $ for possessive nouns, S for plural nouns (since plural nouns typically end in s) and P for proper nouns. In addition, most of the tags have suffix modifiers: -NC for citations, -HL for words in headlines and -TL for titles (a feature of Brown tabs). I counted over 450 tagsets in the train dataset.
+A function is provided in the notebook to explore the various tagset and get some examples of words for the variants.
+
+![](asset/variants.jpg)
+
+A model is fit on the large corpus with the unsimplied tagset. Accuracy reached is just over 92% on the unseen test set.
+Laplace smoothing is then applied. Laplace smoothing is a technique where you add a small, non-zero value to all observed counts to offset for unobserved values. This technique improve the baseline model for 1% in absolute and achieve nearly 94% tag accuracy.
+
+![](asset/results2.jpg)
+
+![](asset/brown.jpg)
+
+
+
