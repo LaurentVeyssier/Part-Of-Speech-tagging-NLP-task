@@ -14,6 +14,8 @@ Part of speech tagging is the process of determining the syntactic category of a
 
 The universal POS tagset used in this project defines the following twelve POS tags: NOUN (nouns), VERB (verbs), ADJ (adjectives), ADV (adverbs), PRON (pronouns), DET (determiners and articles), ADP (prepositions and postpositions), NUM (numerals), CONJ (conjunctions), PRT (particles), ‘.’ (punctuation marks) and X (a catch-all for other categories such as abbreviations or foreign words). For more details, you can check out this [paper](http://www.petrovi.de/data/universal.pdf).
 
+At the end of the project, the unsimplied tagset which includes multiple variants is used on the full Brown Corpus.
+
 # Dataset used
 
 The project uses [Brown corpus dataset](https://en.wikipedia.org/wiki/Brown_Corpus). The Brown University Standard Corpus of Present-Day American English (or just Brown Corpus) is an electronic collection of text samples of American English, the first major structured corpus of varied genres. This corpus first set the bar for the scientific study of the frequency and distribution of word categories in everyday language use. The Brown Corpus consists of 500 samples, distributed across 15 genres in rough proportion to the amount published in 1961 in each of those genres. All works sampled were published in 1961; as far as could be determined they were first published then, and were written by native speakers of American English. The corpus originally contained 1,014,312 words sampled from 15 text categories (Press, fiction, ...). There are 57,340 sentences in the corpus.
@@ -71,7 +73,7 @@ A function is provided in the notebook to explore the various tagset and get som
 ![](asset/variants.jpg)
 
 A model is fit on the large corpus with the unsimplied tagset. Accuracy reached is just over 92% on the unseen test set.
-Laplace smoothing is then applied. Laplace smoothing is a technique where you add a small, non-zero value to all observed counts to offset for unobserved values. This technique improve the baseline model for 1% in absolute and achieve nearly 94% tag accuracy.
+Laplace smoothing is then applied. This technique improve the baseline model for 1% in absolute and achieve nearly 94% tag accuracy.
 
 ![](asset/results2.jpg)
 
