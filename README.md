@@ -62,4 +62,4 @@ Two models are compared:
 
 Model mapping:
 
-![](asset/exampleHMM.jpg)
+![](asset/exampleHMM.png)
