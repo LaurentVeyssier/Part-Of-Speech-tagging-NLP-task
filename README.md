@@ -10,9 +10,9 @@ The objective is to categorize each word in sentences as one of the 12 categorie
 
 ![](asset/POS.jpg)
 
-Part of speech tagging is the process of determining the syntactic category of a word from the words in its surrounding context. It is often used to help disambiguate natural language phrases because it can be done quickly with high accuracy. Tagging can be used for many NLP tasks like determining correct pronunciation during speech synthesis (for example, dis-count as a noun vs dis-count as a verb), for information retrieval, and for word sense disambiguation.
+Part of speech tagging is the process of determining the syntactic category of a word from the words in its surrounding context. Parts of speech (also known as POS, word classes, or syntactic categories) are useful because they reveal a lot about a word and its neighbors. Knowing whether a word is a noun or a verb tells us about likely neighboring words (nouns are preceded by determiners and adjectives, verbs by nouns) and syntactic structure (nouns are generally part of noun phrases), making part-of-speech tagging a key aspect of parsing. It is often used to help disambiguate natural language phrases because it can be done quickly with high accuracy. Tagging can be used for many NLP tasks like determining correct pronunciation during speech synthesis (for example, the word content is pronounced CONtent when it is a noun and conTENT when it is an adjective, same with dis-count as a noun vs dis-count as a verb), for information retrieval, for labeling named entities like people or organizations in information extraction and for word sense disambiguation.
 
-The universal POS tagset used defines the following twelve POS tags: NOUN (nouns), VERB (verbs), ADJ (adjectives), ADV (adverbs), PRON (pronouns), DET (determiners and articles), ADP (prepositions and postpositions), NUM (numerals), CONJ (conjunctions), PRT (particles), ‘.’ (punctuation marks) and X (a catch-all for other categories such as abbreviations or foreign words). For more details, you can check out this [paper](http://www.petrovi.de/data/universal.pdf).
+The universal POS tagset used in this project defines the following twelve POS tags: NOUN (nouns), VERB (verbs), ADJ (adjectives), ADV (adverbs), PRON (pronouns), DET (determiners and articles), ADP (prepositions and postpositions), NUM (numerals), CONJ (conjunctions), PRT (particles), ‘.’ (punctuation marks) and X (a catch-all for other categories such as abbreviations or foreign words). For more details, you can check out this [paper](http://www.petrovi.de/data/universal.pdf).
 
 # Dataset used
 
@@ -20,15 +20,25 @@ The project uses [Brown corpus dataset](https://en.wikipedia.org/wiki/Brown_Corp
 
 # Hidden Markov Model and Viterbi algorithm
 
-In such POS tagging task, we have observable values represented by the sentences and their words. And we have hidden states represented by the tags such as 'noun', 'verb', 'adjective', 'pronoun', etc... which we want to attach to each word. 
+In such POS tagging task, we have observable values represented by the sentences and their words. And we have hidden states represented by the tags such as 'noun', 'verb', 'adjective', 'pronoun', etc... which we want to attach to each word. The input to the tagging algorithm is a sequence of (tokenized) words and a tagset, and the output is a sequence of tags, one per token.
 
 Hidden Markov models have been able to achieve >96% tag accuracy with larger tagsets on realistic text corpora. Hidden Markov models have also been used for speech recognition and speech generation, machine translation, gene recognition for bioinformatics, and human gesture recognition for computer vision, and more.
 
-𝜆=(𝐴,𝐵) specifies a Hidden Markov Model in terms of an emission probability distribution 𝐴 and a state transition probability distribution 𝐵. Bayes' rule on conditional probabilities is key to compute these probability distributions based on labeled training data. HMM networks are parameterized by two distributions: the emission probabilities giving the conditional probability of observing evidence values for each hidden state, and the transition probabilities giving the conditional probability of moving between states during the sequence. Additionally, you can specify an initial distribution describing the probability of a sequence starting in each state.
+An HMM is a probabilistic sequence model: given a sequence of units (words, letters, morphemes, sentences, whatever), it computes a probability distribution over possible sequences of labels and chooses the best label sequence. 𝜆=(𝐴,𝐵) specifies a Hidden Markov Model in terms of a state transition probability distribution 𝐴 and an emission probability distribution 𝐵. HMM specific components are:
+ - a set of N states (the tag set here)
+ - a transition probability matrix A, each Aij representing the probability of moving from state i to state j
+ - a sequence of emission probabilities B, each expressing the probability of an observation (a word) being associated to one of the states (tag)
+ - an initial probability distribution over states, ie indicating the probability that the Markov chain will start in state i
+ 
+Bayes' rule on conditional probabilities is key to compute these probability distributions based on labeled training data. Indeed, HMM networks are parameterized by these two distributions: the emission probabilities giving the conditional probability of observing evidence values for each hidden state, and the transition probabilities giving the conditional probability of moving between states during the sequence. Additionally, you can specify an initial distribution describing the probability of a sequence starting in each state.
 
-Using a transition graph, the POS selected is the one with the highest probability, ie maximum likelihood. This is achieved using Viterbi algorithm.
+Using a transition graph, the POS selected is the one with the highest probability, ie maximum likelihood. This is achieved using Viterbi algorithm, the decoding algorithm for HMMs. This is called "decoding" because we use the observation sequence to decode the corresponding hidden state sequence. In the part of speech tagging problem, the hidden states map to parts of speech and the observations map to sentences. Given a sentence, Viterbi decoding finds the most likely sequence of part of speech tags corresponding to the sentence.
 
-![](asset/results.jpg)
+Below, a sketch showing the possible tags for each word and highlighting the path corresponding to the correct tag sequence through the hidden states. The Viterbi algorithm calculates the single path with the highest likelihood to produce a specific observation sequence.
+
+![](asset/viterbi.jpg)
+
+States (parts of speech) which have a zero probability of generating a particular word according to the emission B matrix (such as the probability that a determiner DT will be realized as Janet) are greyed out.
 
 # Dependencies
 
@@ -42,10 +52,14 @@ Two models are compared:
 
 ![](asset/MFC.jpg)
 
+
 - Hidden Markov Model using bigrams. The performance of this model improves by a few percentage points compared to the base line represented by the simplest MFC tagger which simply chooses the tag most frequently assigned to each word. The performance achieved is above 95% accuracy on the unseen test set. 
 
 ![](asset/HMM.jpg)
 
+![](asset/results.jpg)
 
 
+Model mapping:
 
+![](asset/exampleHMM.jpg)
