@@ -84,5 +84,6 @@ Laplace smoothing is then applied. This technique improve the baseline model for
 
 ![](asset/brown.jpg)
 
+Decoding with errors:
 
-
+![](asset/errors.jpg)
