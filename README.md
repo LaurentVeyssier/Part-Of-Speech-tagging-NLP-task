@@ -67,10 +67,15 @@ Model mapping:
 ![](asset/exampleHMM.png)
 
 
-The full Brown Corpus is then used with the unsimplied tagset. There are many variants of tagsets increasing complexity significantly. For example, looking at Nouns or NN tagset variants, the most important contain $ for possessive nouns, S for plural nouns (since plural nouns typically end in s) and P for proper nouns. In addition, most of the tags have suffix modifiers: -NC for citations, -HL for words in headlines and -TL for titles (a feature of Brown tabs). I counted over 450 tagsets in the train dataset.
-A function is provided in the notebook to explore the various tagset and get some examples of words for the variants.
+The full Brown Corpus is then used with the unsimplied tagset. There are many variants of tagsets increasing complexity significantly. For example, looking at Nouns or NN tagset variants, the most important contain $ for possessive nouns, S for plural nouns (since plural nouns typically end in s) and P for proper nouns. In addition, most of the tags have suffix modifiers: -NC for citations, -HL for words in headlines and -TL for titles (a feature of Brown tabs).
+
+I counted over 450 tagsets in the train dataset. A function is provided in the notebook to explore the various tagset and get some examples of words for the variants.
 
 ![](asset/variants.jpg)
+
+Depending on the context, a word can take different tags as illustrated below. The complexity becomes very significant.
+
+![](asset/words.jpg)
 
 A model is fit on the large corpus with the unsimplied tagset. Accuracy reached is just over 92% on the unseen test set.
 Laplace smoothing is then applied. This technique improve the baseline model for 1% in absolute and achieve nearly 94% tag accuracy.
